@@ -124,13 +124,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         mDatabase = new DatabaseHelper(this);
 
-        findViewById(R.id.userLocationBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                FocusHomeMarker(currUserLocation);
-            }
-        });
 
         typeMap = findViewById(R.id.mapType);
         typeMap.setSelection(1);
@@ -494,11 +488,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         TextView tvPlace = v.findViewById(R.id.place_name);
         TextView tvDist = v.findViewById(R.id.distance);
-        TextView tvDur = v.findViewById(R.id.duration);
 
         tvPlace.setText(address);
         tvDist.setText(distance);
-        tvDur.setText(duration);
 
         if (mDatabase.numberOfResults(fvt_dest.getPosition().latitude, fvt_dest.getPosition().longitude)>0){
 
@@ -684,26 +676,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             case R.id.addToFvtBtn:
                 addToFvt();
                 break;
-            case R.id.getDirBtn:
 
-                mMap.clear();
-                User = null;
-
-
-                String[] directionsList;
-                DataParser directionParser = new DataParser();
-                directionsList = directionParser.parseDirections(s);
-                displayDirections(directionsList);
-
-                startL = mMap.addMarker(new MarkerOptions().position(startL.getPosition())
-                        .title(startL.getTitle())
-                        .icon(bitmapDescriptorFromVector(this,R.drawable.start2 )));
-
-                fvt_dest = mMap.addMarker(new MarkerOptions().position(fvt_dest.getPosition())
-                        .title(fvt_dest.getTitle())
-                        .icon(bitmapDescriptorFromVector(this,R.drawable.destination )));
-                fvt_dest.showInfoWindow();
-                break;
 
 
             default:

@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
-
     tools:context=".MapActivity">
 
 <Spinner
     android:entries="@array/nearByPlaces"
-    android:gravity="center"
-    android:layout_width="match_parent"
+    android:gravity="left"
+    android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:id="@+id/nearByPlaces"/>
 
-<fragment
+
+
+    <fragment
 android:id="@+id/map"
 android:name="com.google.android.gms.maps.SupportMapFragment"
 android:layout_width="match_parent"
@@ -54,23 +54,16 @@ android:layout_height="wrap_content">
 <LinearLayout
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:orientation="horizontal">
-
-<Spinner
-    android:entries="@array/map_types"
-    android:gravity="center"
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_height="wrap_content"
-    android:id="@+id/mapType"/>
+android:orientation="vertical">
 
 
+    <Spinner
+        android:id="@+id/mapType"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:entries="@array/map_types"
+        android:gravity="right" />
 
-<Button
-    android:layout_width="30dp"
-    android:background="@drawable/showmylocation"
-    android:layout_height="30dp"
-    android:id="@+id/userLocationBtn"/>
 
 </LinearLayout>
 

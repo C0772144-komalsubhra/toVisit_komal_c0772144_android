@@ -1,18 +1,16 @@
 <resources>
     <string name="app_name">tovisit_komal_c0772144_android</string>
-    <string name="title_activity_map_actvt">Map</string>
+    <string name="title_activity_map">Map</string>
     <string-array name="map_types">
-        <item>NONE</item>
         <item>NORMAL</item>
         <item>SATALITE</item>
         <item>TERRIAN</item>
         <item>HYBRID</item>
     </string-array>
     <string-array name="nearByPlaces">
-        <item>Look for nearby places</item>
-        <item>library</item>
-        <item>restaurant</item>
-        <item>bank</item>
-        <item>pharmacy</item>
+        <item>Nearby places</item>
+        <item>Restaurant</item>
+        <item>Bank</item>
+        <item>Pharmacy</item>
     </string-array>
 </resources>
