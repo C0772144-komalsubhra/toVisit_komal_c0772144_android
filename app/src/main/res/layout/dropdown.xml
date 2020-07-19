@@ -28,22 +28,18 @@
         android:orientation="horizontal">
 
 
-        <Button
-            android:id="@+id/addToFvtBtn"
-            android:layout_width="66dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="markerClickAction"
-         android:background="@drawable/heart"
-            android:textColor="#000"
-            android:textStyle="bold" />
-
     </LinearLayout>
 
-
-
-
+    <Button
+        android:id="@+id/addToFvtBtn"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/fav"
+        android:gravity="center_horizontal"
+        android:onClick="markerClickAction"
+        android:textColor="#000"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

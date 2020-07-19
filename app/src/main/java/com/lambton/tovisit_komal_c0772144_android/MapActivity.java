@@ -77,7 +77,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     DatabaseHelper mDatabase;
 
-    // location manager and listener
     LocationManager locationManager;
     LocationListener locationListener;
     Geocoder geocoder;
@@ -94,7 +93,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -248,13 +246,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         super.onStart();
 
 
-//        if (!checkPermission())
-//            requestPermission();
-//        else
-//
-//            reqLocationUpdate();
-//            currUserLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//            addUSerMarker(currUserLocation);
 
 
 
@@ -380,10 +371,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
                 public void onMapLongClick(LatLng latLng) {
-                    
-//                    Location place = new Location("your destination");
-//                    place.setLongitude(latLng.latitude);
-//                    place.setLongitude(latLng.longitude);
                     MarkerOptions options = new MarkerOptions().position(latLng)
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
@@ -395,9 +382,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             });
 
 
-        } // this part will only execute if editing mode is off
+        }
         else {
-            // when editing mode is ON
             Log.i(TAG, "old data: " + fvt_dest.getPosition());
             mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
                 @Override
@@ -449,15 +435,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
 
     }
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -467,8 +445,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         mMap = googleMap;
 
-//        currUserLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        addUSerMarker(currUserLocation);
+
 
 
         if (!checkPermission()){
@@ -568,15 +545,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
-
-
-
-
-    
-    
-    /*
-    Location related functions
-     */
 
 
     private boolean checkPermission() {
@@ -685,7 +653,5 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         }
 
         dropdownMenu.dismiss();
-
-
     }
 }

@@ -134,8 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void loadPlaces() {
-//        String sql = "SELECT * FROM employees";
-//        Cursor cursor = mDatabase.rawQuery(sql, null);
 
         placeList = new ArrayList<>();
 
@@ -157,11 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 ));
             } while (cursor.moveToNext());
             cursor.close();
-
-            // show items in a listView
-            // we use a custom adapter to show employees
-
-
             PlaceAdaptor adaptor = new PlaceAdaptor(this, R.layout.place_cell, placeList, mDatabase);
 
             LV_places.setAdapter(adaptor);

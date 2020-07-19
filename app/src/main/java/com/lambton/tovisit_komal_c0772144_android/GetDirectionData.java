@@ -31,7 +31,6 @@ public class GetDirectionData extends AsyncTask<Object, String, String> {
 
     @Override
     protected String doInBackground(Object... objects) {
-        Log.i(TAG, "doInBackground: GET DIRECTION DATA ");
         mMap = (GoogleMap) objects[0];
         url = (String) objects[1];
         latLng = (LatLng) objects[2];
