@@ -1,12 +1,20 @@
 package com.lambton.tovisit_komal_c0772144_android;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +22,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class PlaceAdaptor extends ArrayAdapter {
+
     Context context;
     List<Place> places;
     int layoutRes;
@@ -47,11 +56,13 @@ public class PlaceAdaptor extends ArrayAdapter {
 
 
         if (p.getVisited()){
-            ImageView i = v.findViewById(R.id.placeImage);
-            i.setImageResource(R.drawable.beenhere);}
+        ImageView i = v.findViewById(R.id.placeImage);
+        i.setImageResource(R.drawable.beenhere);}
 
         return v;
     }
+
+
 
 
 }

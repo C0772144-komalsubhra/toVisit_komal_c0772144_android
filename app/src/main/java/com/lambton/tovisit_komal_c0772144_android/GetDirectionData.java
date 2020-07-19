@@ -1,16 +1,27 @@
 package com.lambton.tovisit_komal_c0772144_android;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.android.PolyUtil;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static android.content.ContentValues.TAG;
 
-public class GetDirectionData extends AsyncTask<Object,String,String> {
+public class GetDirectionData extends AsyncTask<Object, String, String> {
+
     String directionData, url;
     GoogleMap mMap;
 
@@ -34,4 +45,32 @@ public class GetDirectionData extends AsyncTask<Object,String,String> {
 
         return directionData;
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

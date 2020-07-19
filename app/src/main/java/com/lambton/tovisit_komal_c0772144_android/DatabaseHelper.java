@@ -8,23 +8,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper{
+public class DatabaseHelper extends SQLiteOpenHelper {
 
-        public static final String DATABASE_NAME = "PlacesDatabase";
-        public static final int DATABASE_VERSION = 1;
-        public static final String TABLE_NAME = "favouritePlaces";
-        public static final String COLUMN_ID = "id";
-        public static final String COLUMN_NAME = "NAME";
-        public static final String COLUMN_VISITED = "VISITED";
-        public static final String COLUMN_LAT = "LATITUDE";
-        public static final String COLUMN_LNG = "LONGITUDE" ;
+
+    public static final String DATABASE_NAME = "PlacesDatabase";
+    public static final int DATABASE_VERSION = 1;
+    public static final String TABLE_NAME = "favouritePlaces";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "NAME";
+    public static final String COLUMN_VISITED = "VISITED";
+    public static final String COLUMN_LAT = "LATITUDE";
+    public static final String COLUMN_LNG = "LONGITUDE" ;
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME , null, DATABASE_VERSION);
     }
 
-        @Override
-        public void onCreate(SQLiteDatabase db) {
+    @Override
+    public void onCreate(SQLiteDatabase db) {
 
         String sql = "CREATE TABLE " + TABLE_NAME + "(" +
                 COLUMN_ID + " INTEGER NOT NULL CONSTRAINT employee_pk PRIMARY KEY AUTOINCREMENT, " +
@@ -36,8 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(sql);
     }
 
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         String sql = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
         db.execSQL(sql);
@@ -45,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-        boolean addPlace(String name, Boolean isVisited, double lat, double lng){
+    boolean addPlace(String name, Boolean isVisited, double lat, double lng){
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
@@ -59,14 +60,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return sqLiteDatabase.insert(TABLE_NAME, null, cv) != -1;
     }
 
-        Cursor getAllPlaces(){
+    Cursor getAllPlaces(){
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         return sqLiteDatabase.rawQuery("SELECT * from " + TABLE_NAME, null);
     }
 
 
-        boolean updatePlace(int id, String name, Boolean isVisited, double lat, double lng){
+    boolean updatePlace(int id, String name, Boolean isVisited, double lat, double lng){
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
@@ -83,7 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
-        int numberOfResults(double lat, double lng){
+    int numberOfResults(double lat, double lng){
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         return sqLiteDatabase.rawQuery("SELECT * from " + TABLE_NAME + " WHERE " +
@@ -94,12 +95,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
-        boolean removePlace(int id){
+    boolean removePlace(int id){
 
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
         return sqLiteDatabase.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) > 0 ;
 
     }
-
-    }
+}

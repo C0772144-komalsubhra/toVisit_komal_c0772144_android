@@ -53,7 +53,7 @@ public class DataParser {
     private List<HashMap<String, String>> getPlaces(JSONArray jsonArray){
 
         Log.i(TAG, "getPlaces: ");
-
+        
         int count = jsonArray.length();
         List<HashMap<String, String>> placesList = new ArrayList<>();
         HashMap<String, String> place = null;
@@ -177,3 +177,20 @@ public class DataParser {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

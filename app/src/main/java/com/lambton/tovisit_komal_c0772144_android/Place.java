@@ -1,8 +1,14 @@
 package com.lambton.tovisit_komal_c0772144_android;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Place implements Serializable {
+
+
     private int id;
     private String name;
     private Boolean isVisited;
@@ -55,4 +61,6 @@ public class Place implements Serializable {
     public void setLng(Double lng) {
         this.lng = lng;
     }
+
+    //public static List<Place> MySavedPlaces = new ArrayList<>();
 }

@@ -1,15 +1,19 @@
 package com.lambton.tovisit_komal_c0772144_android;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class GetNearByPlaceData extends AsyncTask<Object, String, String> {
 

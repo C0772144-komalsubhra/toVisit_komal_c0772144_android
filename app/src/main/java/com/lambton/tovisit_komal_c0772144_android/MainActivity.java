@@ -20,13 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
     SwipeMenuListView LV_places;
     List<Place> placeList;
     DatabaseHelper mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mDatabase = new DatabaseHelper(this);
         LV_places = findViewById(R.id.locationList);
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void create(SwipeMenu menu) {
-
+                
                 SwipeMenuItem del_item = new SwipeMenuItem(getApplicationContext());
                 del_item.setWidth(150);
                 del_item.setBackground(new ColorDrawable(Color.RED));
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         };
         LV_places.setMenuCreator(creator);
         LV_places.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
+
         LV_places.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
@@ -87,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         LV_places.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -162,4 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+
 }

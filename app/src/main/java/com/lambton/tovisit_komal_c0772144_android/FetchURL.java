@@ -13,6 +13,7 @@ import java.net.URL;
 import static android.content.ContentValues.TAG;
 
 public class FetchURL {
+
     public String readURL(String myUrl) throws IOException {
 
         Log.i(TAG, "readURL: ");
