@@ -57,7 +57,7 @@ public class PlaceAdaptor extends ArrayAdapter {
 
         if (p.getVisited()){
         ImageView i = v.findViewById(R.id.placeImage);
-        i.setImageResource(R.drawable.beenhere);}
+        i.setImageResource(R.drawable.here);}
 
         return v;
     }

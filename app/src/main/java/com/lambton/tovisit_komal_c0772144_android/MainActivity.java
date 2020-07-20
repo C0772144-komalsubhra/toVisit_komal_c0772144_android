@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 SwipeMenuItem del_item = new SwipeMenuItem(getApplicationContext());
                 del_item.setWidth(150);
                 del_item.setBackground(new ColorDrawable(Color.RED));
-                del_item.setTitle("DELETE");
+                del_item.setTitle("DEL");
                 del_item.setTitleSize(15);
                 del_item.setTitleColor(Color.WHITE);
                 menu.addMenuItem(del_item);
@@ -100,63 +100,35 @@ public class MainActivity extends AppCompatActivity {
                 Intent mapI = new Intent(MainActivity.this, MapActivity.class);
                 mapI.putExtra("selectedPlace", placeList.get(position));
                 startActivity(mapI);
-
-
-
             }
         });
-
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         loadPlaces();
-
-
-
-
     }
 
     public void showMap(View view) {
-
-        // go to another activity
-
-
         Intent mapI = new Intent(this, MapActivity.class);
-
-
         startActivity(mapI);
-
     }
-
-
     private void loadPlaces() {
-
         placeList = new ArrayList<>();
-
         Cursor cursor = mDatabase.getAllPlaces();
-
         if (cursor.moveToFirst()) {
             do {
-
-                Log.i("DATACHECK", "loadPlaces: "+cursor.getString(2));
                 placeList.add(new Place(
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2).equals("1"),
                         cursor.getDouble(3),
                         cursor.getDouble(4)
-
-
-
                 ));
             } while (cursor.moveToNext());
             cursor.close();
             PlaceAdaptor adaptor = new PlaceAdaptor(this, R.layout.place_cell, placeList, mDatabase);
-
             LV_places.setAdapter(adaptor);
 
         }
