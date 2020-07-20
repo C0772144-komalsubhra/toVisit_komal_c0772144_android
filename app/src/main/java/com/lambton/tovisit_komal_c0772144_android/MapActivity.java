@@ -81,9 +81,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     LocationListener locationListener;
     Geocoder geocoder;
 
-    //Context context;
 
-    Spinner typeMap, nearby, markerAction;
+
+    Spinner typeMap, nearby;
 
     private String place_name;
     private Object[] dataTransfer;
@@ -203,15 +203,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             @Override
             public void onLocationChanged(Location location) {
 
-                Log.i(TAG, "onLocationChanged: called : " + location);
-
                 if (location != null) {
                     currUserLocation = location;
                     addUSerMarker(currUserLocation);
                 }
-                
-
-
             }
 
             @Override
@@ -244,13 +239,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     protected void onStart() {
         super.onStart();
-
-
-
-
-
-
-
     }
 
 
@@ -291,20 +279,16 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         Intent i = getIntent();
         isEditing = i.getBooleanExtra("EDIT", false);
-        Log.i(TAG, "isEditing: " + isEditing);
         p = (Place) i.getSerializableExtra("selectedPlace");
 
 
         if (p != null) {
-
-            Log.i(TAG, "onMapReady: Place is not null good job");
-
             LatLng pos = new LatLng(p.getLat(), p.getLng());
 
             fvt_dest = mMap.addMarker(new MarkerOptions()
                     .position(pos)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                    .title(isEditing ? "Drag to change location" : p.getName()).draggable(isEditing));
+                    .title(isEditing ? "Drag To Change" : p.getName()).draggable(isEditing));
 
             Log.i(TAG, "onMapReady: marker added successfully");
 
@@ -328,9 +312,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
-
-
-                    System.out.println("you just clicked on the marker");
                     fvt_dest = marker;
 
 
@@ -341,7 +322,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     dataTransfer[2] = fvt_dest.getPosition();
 
                     GetDirectionData getDirectionData = new GetDirectionData();
-                    // execute asynchronously
                     getDirectionData.execute(dataTransfer);
 
 
@@ -384,7 +364,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         }
         else {
-            Log.i(TAG, "old data: " + fvt_dest.getPosition());
             mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
                 @Override
                 public void onMarkerDragStart(Marker marker) {
@@ -400,7 +379,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 public void onMarkerDragEnd(Marker marker) {
 
                     fvt_dest = marker;
-                    Log.i(TAG, "new data: " + fvt_dest.getPosition());
 
                 }
             });
@@ -408,25 +386,15 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             findViewById(R.id.editModeLayout).setVisibility(View.VISIBLE);
 
-            final CheckBox visited = findViewById(R.id.visitedCheckBox);
-            Log.i(TAG, "onMapReady: " + p.getVisited());
-            visited.setChecked(p.getVisited());
-            // update button
             findViewById(R.id.updateBTN).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     String newPlaceName = fetchAddressLine(fvt_dest);
-                    Boolean success = mDatabase.updatePlace(p.getId(), newPlaceName, visited.isChecked(),
-                            fvt_dest.getPosition().latitude, fvt_dest.getPosition().longitude);
+
                     fvt_dest.setTitle(newPlaceName);
                     fvt_dest.showInfoWindow();
                     Log.i(TAG, "new data: " + fvt_dest.getPosition());
-
-
-                    Toast.makeText(MapActivity.this, success ? "updated successfully" : "update failed", Toast.LENGTH_SHORT).show();
-
-
                 }
             });
 
@@ -469,7 +437,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         tvPlace.setText(address);
         tvDist.setText(distance);
 
-        if (mDatabase.numberOfResults(fvt_dest.getPosition().latitude, fvt_dest.getPosition().longitude)>0){
+        if (mDatabase.numberOfResults(fvt_dest.getPosition().latitude, fvt_dest.getPosition().longitude) > 0) {
 
             Button b = v.findViewById(R.id.addToFvtBtn);
             b.setEnabled(false);
@@ -479,23 +447,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         dropdownMenu = alert.create();
         dropdownMenu.show();
-
-    }
-
-
-
-    private void displayDirections(String[] directionsList) {
-
-
-        int count = directionsList.length;
-
-        for(int i=0; i<count; i++){
-            PolylineOptions options = new PolylineOptions()
-                    .color(Color.BLUE)
-                    .width(10)
-                    .addAll(PolyUtil.decode(directionsList[i]));
-            mMap.addPolyline(options);
-        }
 
     }
 
